@@ -64,27 +64,29 @@ input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px s
   </div>
 </div>
 <script>
-function djVoice(){
+if('speechSynthesis' in window){window.speechSynthesis.getVoices();}
+function playVoiceAndBass(){
   try{
     var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();
-    o.type="sawtooth";o.frequency.setValueAtTime(55,c.currentTime);o.frequency.exponentialRampToValueAtTime(140,c.currentTime+2.8);
-    g.gain.setValueAtTime(.22,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+3.2);
-    o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+3.3);
+    o.type="sine";
+    o.frequency.setValueAtTime(95,c.currentTime);
+    o.frequency.exponentialRampToValueAtTime(36,c.currentTime+2.6);
+    g.gain.setValueAtTime(0.01,c.currentTime);
+    g.gain.linearRampToValueAtTime(0.65,c.currentTime+0.15);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+2.9);
+    o.connect(g);g.connect(c.destination);
+    o.start();o.stop(c.currentTime+3.0);
   }catch(e){}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var vs=window.speechSynthesis.getVoices();
-    var fv=vs.find(v=>/female|woman|zira|samantha|google uk english female/i.test(v.name))||vs[0];
-    [0,90,180].forEach(function(d,idx){
-      setTimeout(function(){
-        var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition");
-        if(fv)u.voice=fv;
-        u.pitch=idx===0?1.35:1.15;
-        u.rate=0.92;
-        u.volume=idx===0?1.0:(idx===1?0.55:0.25);
-        window.speechSynthesis.speak(u);
-      },d);
-    });
+    var fv=vs.find(function(v){return /female|woman|zira|samantha|victoria|google uk english female/i.test(v.name);})||vs[0];
+    var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition");
+    if(fv)u.voice=fv;
+    u.pitch=1.18;
+    u.rate=0.88;
+    u.volume=1.0;
+    window.speechSynthesis.speak(u);
   }
 }
 function showLetters(txt,id,isVip,delayStart){
@@ -98,13 +100,13 @@ function showLetters(txt,id,isVip,delayStart){
   });
 }
 function go(){
-  djVoice();
+  playVoiceAndBass();
   document.getElementById("tbtn").style.display="none";
   document.getElementById("abox").style.display="flex";
   showLetters("SD OPTIMIZE","r1",false,100);
   showLetters("VIP EDITION","r2",true,1450);
   setTimeout(function(){document.getElementById("fl").style.width="100%"},50);
-  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},3500);
+  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},3400);
 }
 function chk(){if(document.getElementById("u").value.trim()==="SDOPTIMIZE"&&document.getElementById("p").value.trim()==="SDVIP2026"){document.getElementById("lc").style.display="none";document.getElementById("dl").style.display="block"}else{document.getElementById("er").style.display="block"}}
 function getF(){var a="https://www.mediafire"+".com/file/",b="k4wfsi1f22b689b/SD+x+sensi+Android+Pro+Optimize+(Specialv2).zip/file";window.location.href=a+b}
