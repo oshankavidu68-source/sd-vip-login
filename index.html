@@ -6,31 +6,33 @@
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Rajdhani',sans-serif}
-body{background:#030305 radial-gradient(circle,#1a0011,#030305);color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px}
-#intro{position:fixed;inset:0;background:#030305;z-index:99;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.sbtn{padding:18px 32px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;border:none;border-radius:50px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:2px;box-shadow:0 0 30px #f05;animation:rgb 3s linear infinite}
+body{background:#030305 radial-gradient(circle,#1a0011,#030305);color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px;overflow:hidden}
+#intro{position:fixed;inset:0;background:#030305;z-index:99;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:15px}
+.sbtn{padding:18px 32px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;border:none;border-radius:50px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:2px;box-shadow:0 0 30px #f05;animation:rgb 3s linear infinite;cursor:pointer}
 @keyframes rgb{100%{background-position:300%}}
 #abox{display:none;flex-direction:column;align-items:center}
-.ring{width:95px;height:95px;border-radius:50%;border:3px solid #f05;border-top-color:#0ef;display:flex;justify-content:center;align-items:center;box-shadow:0 0 35px #f05;animation:sp 1s linear infinite;margin-bottom:20px}
+.ring{width:95px;height:95px;border-radius:50%;border:3px solid #f05;border-top-color:#0ef;display:flex;justify-content:center;align-items:center;box-shadow:0 0 35px #f05;animation:sp 1s linear infinite;margin-bottom:24px}
 @keyframes sp{100%{transform:rotate(360deg)}}
 .core{font-family:'Cinzel Decorative',cursive;font-size:30px;font-weight:900;animation:csp 1s linear infinite}
 @keyframes csp{100%{transform:rotate(-360deg)}}
-.atitle{font-family:'Cinzel Decorative',cursive;font-size:28px;background:linear-gradient(90deg,#f05,#fd0,#0ef);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px #f05)}
-.avip{font-family:'Orbitron',sans-serif;color:#fd0;letter-spacing:5px;text-shadow:0 0 15px #fd0;margin:8px 0 22px}
-.bar{width:220px;height:6px;background:#222;border-radius:10px;overflow:hidden}
-.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 2.3s}
+.w-row{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-bottom:10px}
+.ltr{opacity:0;transform:scale(0.3) translateY(15px);font-family:'Cinzel Decorative',cursive;font-size:27px;font-weight:900;background:linear-gradient(90deg,#f05,#fd0,#0ef);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px #f05);transition:all 0.35s cubic-bezier(0.17,0.89,0.32,1.49)}
+.ltr.vip{font-family:'Orbitron',sans-serif;font-size:18px;background:none;-webkit-text-fill-color:#fd0;text-shadow:0 0 15px #fd0,0 0 28px #f50}
+.ltr.on{opacity:1;transform:scale(1) translateY(0)}
+.bar{width:230px;height:6px;background:#222;border-radius:10px;overflow:hidden;margin-top:20px}
+.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 3.2s linear}
 .box{width:100%;max-width:390px;display:none}
 .card{background:rgba(15,15,24,.95);border:1.5px solid #f05;box-shadow:0 0 35px rgba(255,0,85,.35);border-radius:24px;padding:32px 24px;text-align:center}
 .logo{width:76px;height:76px;margin:0 auto 15px;border-radius:50%;background:linear-gradient(135deg,#f05,#f90);display:flex;justify-content:center;align-items:center;font-family:'Cinzel Decorative',cursive;font-size:28px;box-shadow:0 0 25px #f05}
 h1{font-family:'Cinzel Decorative',cursive;font-size:25px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:rgb 3s linear infinite;margin-bottom:6px}
 p{color:#bae6fd;text-shadow:0 0 8px #0ef;font-size:14px;margin-bottom:22px}
 input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px solid #0ef;border-radius:12px;color:#0ff;font-family:'Orbitron',sans-serif;font-size:13px;outline:none}
-.btn{width:100%;padding:15px;background:linear-gradient(90deg,#f05,#f50);border:none;border-radius:12px;color:#fff;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1.5px;box-shadow:0 0 20px #f05}
+.btn{width:100%;padding:15px;background:linear-gradient(90deg,#f05,#f50);border:none;border-radius:12px;color:#fff;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1.5px;box-shadow:0 0 20px #f05;cursor:pointer}
 .err{display:none;color:#ff4d79;margin-top:12px}
 #dl{display:none}
 .pkg{background:rgba(0,229,255,.1);border:1px solid #0ef;border-radius:14px;padding:14px;margin:18px 0;text-align:left}
 .pkg h3{color:#0ff;font-size:14px;margin-top:4px}
-.dlb{width:100%;padding:16px;background:linear-gradient(90deg,#0f8,#0bf);border:none;border-radius:12px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1px;box-shadow:0 0 25px #0f8}
+.dlb{width:100%;padding:16px;background:linear-gradient(90deg,#0f8,#0bf);border:none;border-radius:12px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1px;box-shadow:0 0 25px #0f8;cursor:pointer}
 </style>
 </head>
 <body>
@@ -38,8 +40,8 @@ input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px s
   <button class="sbtn" id="tbtn" onclick="go()">⚡ ENTER VIP PORTAL ⚡</button>
   <div id="abox">
     <div class="ring"><div class="core">SD</div></div>
-    <div class="atitle">SD OPTIMIZE</div>
-    <div class="avip">👑 VIP EDITION 👑</div>
+    <div class="w-row" id="r1"></div>
+    <div class="w-row" id="r2"></div>
     <div class="bar"><div class="fill" id="fl"></div></div>
   </div>
 </div>
@@ -62,8 +64,48 @@ input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px s
   </div>
 </div>
 <script>
-function snd(){try{var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.type="sawtooth";o.frequency.setValueAtTime(70,c.currentTime);o.frequency.exponentialRampToValueAtTime(320,c.currentTime+1.5);g.gain.setValueAtTime(.25,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+2.2);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+2.3)}catch(e){}}
-function go(){snd();document.getElementById("tbtn").style.display="none";document.getElementById("abox").style.display="flex";setTimeout(()=>{document.getElementById("fl").style.width="100%"},50);setTimeout(()=>{document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},2500)}
+function djVoice(){
+  try{
+    var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();
+    o.type="sawtooth";o.frequency.setValueAtTime(55,c.currentTime);o.frequency.exponentialRampToValueAtTime(140,c.currentTime+2.8);
+    g.gain.setValueAtTime(.22,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+3.2);
+    o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+3.3);
+  }catch(e){}
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    var vs=window.speechSynthesis.getVoices();
+    var fv=vs.find(v=>/female|woman|zira|samantha|google uk english female/i.test(v.name))||vs[0];
+    [0,90,180].forEach(function(d,idx){
+      setTimeout(function(){
+        var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition");
+        if(fv)u.voice=fv;
+        u.pitch=idx===0?1.35:1.15;
+        u.rate=0.92;
+        u.volume=idx===0?1.0:(idx===1?0.55:0.25);
+        window.speechSynthesis.speak(u);
+      },d);
+    });
+  }
+}
+function showLetters(txt,id,isVip,delayStart){
+  var el=document.getElementById(id);
+  txt.split("").forEach(function(ch,i){
+    var s=document.createElement("span");
+    s.className="ltr"+(isVip?" vip":"");
+    s.innerHTML=ch===" "?"&nbsp;&nbsp;":ch;
+    el.appendChild(s);
+    setTimeout(function(){s.classList.add("on")},delayStart+(i*110));
+  });
+}
+function go(){
+  djVoice();
+  document.getElementById("tbtn").style.display="none";
+  document.getElementById("abox").style.display="flex";
+  showLetters("SD OPTIMIZE","r1",false,100);
+  showLetters("VIP EDITION","r2",true,1450);
+  setTimeout(function(){document.getElementById("fl").style.width="100%"},50);
+  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},3500);
+}
 function chk(){if(document.getElementById("u").value.trim()==="SDOPTIMIZE"&&document.getElementById("p").value.trim()==="SDVIP2026"){document.getElementById("lc").style.display="none";document.getElementById("dl").style.display="block"}else{document.getElementById("er").style.display="block"}}
 function getF(){var a="https://www.mediafire"+".com/file/",b="k4wfsi1f22b689b/SD+x+sensi+Android+Pro+Optimize+(Specialv2).zip/file";window.location.href=a+b}
 </script>
