@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD OPTIMIZE | VIP Client Portal</title>
+<link href="https://googleapis.com" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: radial-gradient(circle at top, #1f0505 0%, #09090b 65%, #000000 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .glow-bg {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: rgba(255, 25, 25, 0.25);
+    filter: blur(110px);
+    border-radius: 50%;
+    z-index: 0;
+    animation: pulseGlow 4s infinite alternate;
+  }
+
+  @keyframes pulseGlow {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    background: rgba(20, 20, 24, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 45, 45, 0.28);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 30, 30, 0.15);
+    border-radius: 22px;
+    padding: 38px 30px;
+    width: 100%;
+    max-width: 390px;
+    text-align: center;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 35, 35, 0.15);
+    color: #ff4d4d;
+    border: 1px solid rgba(255, 50, 50, 0.35);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .logo-circle {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff1e1e, #990000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 30, 30, 0.6);
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    color: #ffffff;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 28px;
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 14px 42px 14px 16px;
+    background: rgba(12, 12, 15, 0.85);
+    border: 1px solid #2d2d35;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .input-group input:focus {
+    border-color: #ff2e2e;
+    box-shadow: 0 0 12px rgba(255, 46, 46, 0.25);
+  }
+
+  .toggle-pass {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 14px;
+    user-select: none;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #ff2626 0%, #b30000 100%);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 30, 30, 0.35);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(255, 30, 30, 0.5);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .error-msg {
+    display: none;
+    background: rgba(255, 40, 40, 0.12);
+    border: 1px solid rgba(255, 40, 40, 0.35);
+    color: #ff6b6b;
+    font-size: 12.5px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 16px;
+  }
+
+  #download-section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .success-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.15);
+    border: 2px solid #10b981;
+    color: #10b981;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.3);
+  }
+
+  .file-info {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px;
+    margin: 18px 0 22px;
+    text-align: left;
+  }
+
+  .file-info span {
+    display: block;
+    font-size: 11px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .file-info strong {
+    display: block;
+    font-size: 13.5px;
+    color: #ffffff;
+    margin-top: 4px;
+    word-break: break-word;
+  }
+
+  .btn-download {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+    transition: all 0.3s ease;
+  }
+
+  .btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(16, 185, 129, 0.5);
+  }
+
+  .footer-text {
+    margin-top: 24px;
+    font-size: 11px;
+    color: #6b7280;
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<!-- LOGIN CARD -->
+<div class="card" id="login-section">
+  <div class="badge">Official VIP Portal</div>
+  <div class="logo-circle">SD</div>
+  <h1>SD OPTIMIZE</h1>
+  <p class="subtitle">Enter your VIP credentials to unlock your configuration</p>
+
+  <div class="input-group">
+    <input type="text" id="username" placeholder="Username" autocomplete="off">
+  </div>
+
+  <div class="input-group">
+    <input type="password" id="password" placeholder="Password">
+    <span class="toggle-pass" onclick="togglePassword()">👁️</span>
+  </div>
+
+  <button class="btn-primary" id="login-btn" onclick="handleLogin()">ACCESS VIP FILE</button>
+
+  <div class="error-msg" id="error-box">⚠️ Invalid Username or Password. Please try again.</div>
+
+  <div class="footer-text">© 2026 SD OPTIMIZE • Secured Client Access</div>
+</div>
+
+<!-- DOWNLOAD CARD -->
+<div class="card" id="download-section">
+  <div class="badge" style="color: #10b981; border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.12);">Verified Access</div>
+  <div class="success-icon">✓</div>
+  <h1>Access Granted</h1>
+  <p class="subtitle">Your VIP package is ready for download</p>
+
+  <div class="file-info">
+    <span>Package Name</span>
+    <strong>SD x sensi Android Pro Optimize (Specialv2).zip</strong>
+  </div>
+
+  <a href="https://mediafire.com" class="btn-download" target="_blank" rel="noopener noreferrer">
+    ⬇️ DOWNLOAD VIP FILE
+  </a>
+
+  <div class="footer-text">Thank you for choosing SD OPTIMIZE</div>
+</div>
+
+<script>
+  function togglePassword() {
+    const passInput = document.getElementById("password");
+    passInput.type = passInput.type === "password" ? "text" : "password";
+  }
+
+  function handleLogin() {
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+    const errorBox = document.getElementById("error-box");
+    const btn = document.getElementById("login-btn");
+
+    if (user === "SDOPTIMIZE" && pass === "SDVIP2026") {
+      errorBox.style.display = "none";
+      btn.innerText = "VERIFYING...";
+      setTimeout(() => {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("download-section").style.display = "block";
+      }, 600);
+    } else {
+      errorBox.style.display = "block";
+    }
+  }
+
+  document.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  });
+</script>
+
+</body>
+</html>
