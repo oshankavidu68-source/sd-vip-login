@@ -20,7 +20,7 @@ body{background:#030305 radial-gradient(circle,#1a0011,#030305);color:#fff;min-h
 .ltr.vip{font-family:'Orbitron',sans-serif;font-size:18px;background:none;-webkit-text-fill-color:#fd0;text-shadow:0 0 15px #fd0,0 0 28px #f50}
 .ltr.on{opacity:1;transform:scale(1) translateY(0)}
 .bar{width:230px;height:6px;background:#222;border-radius:10px;overflow:hidden;margin-top:20px}
-.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 3.2s linear}
+.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 3.5s linear}
 .box{width:100%;max-width:390px;display:none}
 .card{background:rgba(15,15,24,.95);border:1.5px solid #f05;box-shadow:0 0 35px rgba(255,0,85,.35);border-radius:24px;padding:32px 24px;text-align:center}
 .logo{width:76px;height:76px;margin:0 auto 15px;border-radius:50%;background:linear-gradient(135deg,#f05,#f90);display:flex;justify-content:center;align-items:center;font-family:'Cinzel Decorative',cursive;font-size:28px;box-shadow:0 0 25px #f05}
@@ -65,26 +65,26 @@ input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px s
 </div>
 <script>
 if('speechSynthesis' in window){window.speechSynthesis.getVoices();}
-function playVoiceAndBass(){
+function playDeepVoice(){
   try{
     var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();
     o.type="sine";
-    o.frequency.setValueAtTime(95,c.currentTime);
-    o.frequency.exponentialRampToValueAtTime(36,c.currentTime+2.6);
+    o.frequency.setValueAtTime(75,c.currentTime);
+    o.frequency.exponentialRampToValueAtTime(30,c.currentTime+3.2);
     g.gain.setValueAtTime(0.01,c.currentTime);
-    g.gain.linearRampToValueAtTime(0.65,c.currentTime+0.15);
-    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+2.9);
+    g.gain.linearRampToValueAtTime(0.85,c.currentTime+0.2);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+3.5);
     o.connect(g);g.connect(c.destination);
-    o.start();o.stop(c.currentTime+3.0);
+    o.start();o.stop(c.currentTime+3.6);
   }catch(e){}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var vs=window.speechSynthesis.getVoices();
-    var fv=vs.find(function(v){return /female|woman|zira|samantha|victoria|google uk english female/i.test(v.name);})||vs[0];
+    var mv=vs.find(function(v){return /male|man|david|mark|daniel|google uk english male/i.test(v.name);})||vs[0];
     var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition");
-    if(fv)u.voice=fv;
-    u.pitch=1.18;
-    u.rate=0.88;
+    if(mv)u.voice=mv;
+    u.pitch=0.45;
+    u.rate=0.82;
     u.volume=1.0;
     window.speechSynthesis.speak(u);
   }
@@ -96,17 +96,17 @@ function showLetters(txt,id,isVip,delayStart){
     s.className="ltr"+(isVip?" vip":"");
     s.innerHTML=ch===" "?"&nbsp;&nbsp;":ch;
     el.appendChild(s);
-    setTimeout(function(){s.classList.add("on")},delayStart+(i*110));
+    setTimeout(function(){s.classList.add("on")},delayStart+(i*115));
   });
 }
 function go(){
-  playVoiceAndBass();
+  playDeepVoice();
   document.getElementById("tbtn").style.display="none";
   document.getElementById("abox").style.display="flex";
   showLetters("SD OPTIMIZE","r1",false,100);
-  showLetters("VIP EDITION","r2",true,1450);
+  showLetters("VIP EDITION","r2",true,1550);
   setTimeout(function(){document.getElementById("fl").style.width="100%"},50);
-  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},3400);
+  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},3700);
 }
 function chk(){if(document.getElementById("u").value.trim()==="SDOPTIMIZE"&&document.getElementById("p").value.trim()==="SDVIP2026"){document.getElementById("lc").style.display="none";document.getElementById("dl").style.display="block"}else{document.getElementById("er").style.display="block"}}
 function getF(){var a="https://www.mediafire"+".com/file/",b="k4wfsi1f22b689b/SD+x+sensi+Android+Pro+Optimize+(Specialv2).zip/file";window.location.href=a+b}
