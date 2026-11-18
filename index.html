@@ -109,7 +109,7 @@ function djBassVoice(){
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var vs=window.speechSynthesis.getVoices();
-    var mv=vs.find(function(v){return /male|man|david|mark|daniel|guy|google uk english male/i.test(v.name);})||vs[0];
+    var mv=vs.find(function(v){return /male|man|david|mark|daniel|guy|google uk english male/i.test(v.name);})||vs;
     var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition... Free Fire");
     if(mv)u.voice=mv;
     u.pitch=0.25;u.rate=0.78;u.volume=1.0;
