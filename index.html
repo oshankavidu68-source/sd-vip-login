@@ -2,46 +2,50 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SD OPTIMIZE VIP</title>
+<title>SD OPTIMIZE VIP - FREE FIRE</title>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Rajdhani',sans-serif}
-body{background:#030305 radial-gradient(circle,#1a0011,#030305);color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px;overflow:hidden}
-#intro{position:fixed;inset:0;background:#030305;z-index:99;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:15px}
-.sbtn{padding:18px 32px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;border:none;border-radius:50px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:2px;box-shadow:0 0 30px #f05;animation:rgb 3s linear infinite;cursor:pointer}
+body{background:#020205;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px;overflow:hidden}
+#bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+#intro{position:fixed;inset:0;background:rgba(2,2,5,.82);backdrop-filter:blur(4px);z-index:99;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:15px}
+.sbtn{padding:18px 34px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;border:none;border-radius:50px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:2px;box-shadow:0 0 35px #f05;animation:rgb 3s linear infinite;cursor:pointer}
 @keyframes rgb{100%{background-position:300%}}
 #abox{display:none;flex-direction:column;align-items:center}
-.ring{width:95px;height:95px;border-radius:50%;border:3px solid #f05;border-top-color:#0ef;display:flex;justify-content:center;align-items:center;box-shadow:0 0 35px #f05;animation:sp 1s linear infinite;margin-bottom:24px}
+.ring{width:95px;height:95px;border-radius:50%;border:3px solid #f05;border-top-color:#0ef;display:flex;justify-content:center;align-items:center;box-shadow:0 0 35px #f05;animation:sp 1s linear infinite;margin-bottom:22px}
 @keyframes sp{100%{transform:rotate(360deg)}}
 .core{font-family:'Cinzel Decorative',cursive;font-size:30px;font-weight:900;animation:csp 1s linear infinite}
 @keyframes csp{100%{transform:rotate(-360deg)}}
-.w-row{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-bottom:10px}
+.w-row{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-bottom:8px}
 .ltr{opacity:0;transform:scale(0.3) translateY(15px);font-family:'Cinzel Decorative',cursive;font-size:27px;font-weight:900;background:linear-gradient(90deg,#f05,#fd0,#0ef);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px #f05);transition:all 0.35s cubic-bezier(0.17,0.89,0.32,1.49)}
-.ltr.vip{font-family:'Orbitron',sans-serif;font-size:18px;background:none;-webkit-text-fill-color:#fd0;text-shadow:0 0 15px #fd0,0 0 28px #f50}
+.ltr.vip{font-family:'Orbitron',sans-serif;font-size:17px;background:none;-webkit-text-fill-color:#fd0;text-shadow:0 0 15px #fd0,0 0 28px #f50}
+.ltr.ff{font-family:'Orbitron',sans-serif;font-size:21px;background:linear-gradient(90deg,#ff1e27,#ff9900);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 14px #ff1e27);letter-spacing:2px}
 .ltr.on{opacity:1;transform:scale(1) translateY(0)}
-.bar{width:230px;height:6px;background:#222;border-radius:10px;overflow:hidden;margin-top:20px}
-.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 3.5s linear}
-.box{width:100%;max-width:390px;display:none}
-.card{background:rgba(15,15,24,.95);border:1.5px solid #f05;box-shadow:0 0 35px rgba(255,0,85,.35);border-radius:24px;padding:32px 24px;text-align:center}
+.bar{width:230px;height:6px;background:#222;border-radius:10px;overflow:hidden;margin-top:18px}
+.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 4.3s linear}
+.box{width:100%;max-width:390px;display:none;position:relative;z-index:5}
+.card{background:rgba(10,10,18,.68);backdrop-filter:blur(14px);border:1.5px solid rgba(255,0,85,.75);box-shadow:0 0 45px rgba(255,0,85,.45);border-radius:24px;padding:32px 24px;text-align:center}
 .logo{width:76px;height:76px;margin:0 auto 15px;border-radius:50%;background:linear-gradient(135deg,#f05,#f90);display:flex;justify-content:center;align-items:center;font-family:'Cinzel Decorative',cursive;font-size:28px;box-shadow:0 0 25px #f05}
 h1{font-family:'Cinzel Decorative',cursive;font-size:25px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:rgb 3s linear infinite;margin-bottom:6px}
 p{color:#bae6fd;text-shadow:0 0 8px #0ef;font-size:14px;margin-bottom:22px}
-input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px solid #0ef;border-radius:12px;color:#0ff;font-family:'Orbitron',sans-serif;font-size:13px;outline:none}
-.btn{width:100%;padding:15px;background:linear-gradient(90deg,#f05,#f50);border:none;border-radius:12px;color:#fff;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1.5px;box-shadow:0 0 20px #f05;cursor:pointer}
+input{width:100%;padding:14px;margin-bottom:14px;background:rgba(5,5,10,.82);border:1px solid #0ef;border-radius:12px;color:#0ff;font-family:'Orbitron',sans-serif;font-size:13px;outline:none}
+.btn{width:100%;padding:15px;background:linear-gradient(90deg,#f05,#f50);border:none;border-radius:12px;color:#fff;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1.5px;box-shadow:0 0 22px #f05;cursor:pointer}
 .err{display:none;color:#ff4d79;margin-top:12px}
 #dl{display:none}
-.pkg{background:rgba(0,229,255,.1);border:1px solid #0ef;border-radius:14px;padding:14px;margin:18px 0;text-align:left}
+.pkg{background:rgba(0,229,255,.12);border:1px solid #0ef;border-radius:14px;padding:14px;margin:18px 0;text-align:left}
 .pkg h3{color:#0ff;font-size:14px;margin-top:4px}
 .dlb{width:100%;padding:16px;background:linear-gradient(90deg,#0f8,#0bf);border:none;border-radius:12px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1px;box-shadow:0 0 25px #0f8;cursor:pointer}
 </style>
 </head>
 <body>
+<canvas id="bg3d"></canvas>
 <div id="intro">
   <button class="sbtn" id="tbtn" onclick="go()">⚡ ENTER VIP PORTAL ⚡</button>
   <div id="abox">
     <div class="ring"><div class="core">SD</div></div>
     <div class="w-row" id="r1"></div>
     <div class="w-row" id="r2"></div>
+    <div class="w-row" id="r3"></div>
     <div class="bar"><div class="fill" id="fl"></div></div>
   </div>
 </div>
@@ -63,50 +67,74 @@ input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px s
     <button class="dlb" onclick="getF()">⬇️ DOWNLOAD VIP FILE</button>
   </div>
 </div>
+<script src="https://cloudflare.com"></script>
 <script>
+var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+var ren=new THREE.WebGLRenderer({canvas:document.getElementById("bg3d"),antialias:true});
+ren.setSize(window.innerWidth,window.innerHeight);cam.position.z=28;
+var g1=new THREE.TorusKnotGeometry(9,2.2,100,16),m1=new THREE.MeshBasicMaterial({color:0xff0055,wireframe:true,transparent:true,opacity:0.25});
+var knot=new THREE.Mesh(g1,m1);sc.add(knot);
+var g2=new THREE.OctahedronGeometry(16,1),m2=new THREE.MeshBasicMaterial({color:0x00e5ff,wireframe:true,transparent:true,opacity:0.18});
+var cage=new THREE.Mesh(g2,m2);sc.add(cage);
+var pGeo=new THREE.BufferGeometry(),pCnt=350,pPos=new Float32Array(pCnt*3);
+for(var i=0;i<pCnt*3;i++)pPos[i]=(Math.random()-0.5)*70;
+pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
+var pMat=new THREE.PointsMaterial({color:0xffd700,size:0.35,transparent:true,opacity:0.85});
+var embers=new THREE.Points(pGeo,pMat);sc.add(embers);
+window.onresize=function(){cam.aspect=window.innerWidth/window.innerHeight;cam.updateProjectionMatrix();ren.setSize(window.innerWidth,window.innerHeight);};
+function loop3D(){
+  requestAnimationFrame(loop3D);
+  knot.rotation.x+=0.006;knot.rotation.y+=0.009;
+  cage.rotation.y-=0.004;cage.rotation.z+=0.003;
+  var pos=embers.geometry.attributes.position.array;
+  for(var i=1;i<pos.length;i+=3){pos[i]+=0.08;if(pos[i]>35)pos[i]=-35;}
+  embers.geometry.attributes.position.needsUpdate=true;
+  ren.render(sc,cam);
+}
+loop3D();
+
 if('speechSynthesis' in window){window.speechSynthesis.getVoices();}
-function playDeepVoice(){
+function djBassVoice(){
   try{
-    var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();
-    o.type="sine";
-    o.frequency.setValueAtTime(75,c.currentTime);
-    o.frequency.exponentialRampToValueAtTime(30,c.currentTime+3.2);
-    g.gain.setValueAtTime(0.01,c.currentTime);
-    g.gain.linearRampToValueAtTime(0.85,c.currentTime+0.2);
-    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+3.5);
-    o.connect(g);g.connect(c.destination);
-    o.start();o.stop(c.currentTime+3.6);
+    var c=new(window.AudioContext||window.webkitAudioContext)();
+    [0,1.6,3.0].forEach(function(t){
+      var o=c.createOscillator(),g=c.createGain();
+      o.type="sine";o.frequency.setValueAtTime(110,c.currentTime+t);
+      o.frequency.exponentialRampToValueAtTime(28,c.currentTime+t+1.2);
+      g.gain.setValueAtTime(0.95,c.currentTime+t);
+      g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+t+1.3);
+      o.connect(g);g.connect(c.destination);o.start(c.currentTime+t);o.stop(c.currentTime+t+1.4);
+    });
   }catch(e){}
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
     var vs=window.speechSynthesis.getVoices();
-    var mv=vs.find(function(v){return /male|man|david|mark|daniel|google uk english male/i.test(v.name);})||vs[0];
-    var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition");
+    var mv=vs.find(function(v){return /male|man|david|mark|daniel|guy|google uk english male/i.test(v.name);})||vs[0];
+    var u=new SpeechSynthesisUtterance("S D Optimize... V I P Edition... Free Fire");
     if(mv)u.voice=mv;
-    u.pitch=0.45;
-    u.rate=0.82;
-    u.volume=1.0;
+    u.pitch=0.25;u.rate=0.78;u.volume=1.0;
     window.speechSynthesis.speak(u);
   }
 }
-function showLetters(txt,id,isVip,delayStart){
+function showLetters(txt,id,cls,delayStart){
   var el=document.getElementById(id);
   txt.split("").forEach(function(ch,i){
     var s=document.createElement("span");
-    s.className="ltr"+(isVip?" vip":"");
+    s.className="ltr"+(cls?" "+cls:"");
     s.innerHTML=ch===" "?"&nbsp;&nbsp;":ch;
     el.appendChild(s);
-    setTimeout(function(){s.classList.add("on")},delayStart+(i*115));
+    setTimeout(function(){s.classList.add("on")},delayStart+(i*105));
   });
 }
 function go(){
-  playDeepVoice();
+  djBassVoice();
   document.getElementById("tbtn").style.display="none";
   document.getElementById("abox").style.display="flex";
-  showLetters("SD OPTIMIZE","r1",false,100);
-  showLetters("VIP EDITION","r2",true,1550);
+  showLetters("SD OPTIMIZE","r1","",100);
+  showLetters("VIP EDITION","r2","vip",1400);
+  showLetters("FREE FIRE","r3","ff",2750);
   setTimeout(function(){document.getElementById("fl").style.width="100%"},50);
-  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},3700);
+  setTimeout(function(){document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},4500);
 }
 function chk(){if(document.getElementById("u").value.trim()==="SDOPTIMIZE"&&document.getElementById("p").value.trim()==="SDVIP2026"){document.getElementById("lc").style.display="none";document.getElementById("dl").style.display="block"}else{document.getElementById("er").style.display="block"}}
 function getF(){var a="https://www.mediafire"+".com/file/",b="k4wfsi1f22b689b/SD+x+sensi+Android+Pro+Optimize+(Specialv2).zip/file";window.location.href=a+b}
