@@ -1,142 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SD OPTIMIZE | Official VIP Vault</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD OPTIMIZE VIP</title>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Rajdhani', sans-serif; }
-  body {
-    background-color: #040406;
-    background-image: 
-      radial-gradient(circle at 20% 20%, rgba(255, 0, 85, 0.2) 0%, transparent 45%),
-      radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.18) 0%, transparent 45%),
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
-    color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 18px;
-  }
-  .main-box { width: 100%; max-width: 410px; position: relative; z-index: 2; }
-  .top-bar {
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(15, 15, 22, 0.85); border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 10px 16px; border-radius: 14px; margin-bottom: 14px; font-size: 12px; font-weight: 700; letter-spacing: 1px;
-  }
-  .online-txt { color: #00ff88; text-shadow: 0 0 10px #00ff88; display: flex; align-items: center; gap: 7px; }
-  .dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 12px #00ff88; animation: blink 1.2s infinite; }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  .pro-txt { color: #00e5ff; text-shadow: 0 0 10px #00e5ff; }
-  .card {
-    background: linear-gradient(160deg, rgba(20, 20, 32, 0.95) 0%, rgba(8, 8, 12, 0.98) 100%);
-    border: 1.5px solid rgba(255, 0, 85, 0.55);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 0, 85, 0.3);
-    border-radius: 26px; padding: 36px 26px 28px; text-align: center;
-    animation: popIn 0.6s ease-out;
-  }
-  @keyframes popIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .badge {
-    display: inline-block; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.6);
-    color: #ffd700; text-shadow: 0 0 12px #ffd700; font-family: 'Orbitron', sans-serif;
-    font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
-  }
-  .logo {
-    width: 84px; height: 84px; margin: 0 auto 18px; border-radius: 50%;
-    background: linear-gradient(135deg, #ff0055, #ff9900); display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 0 30px #ff0055; animation: glowSpin 3s infinite alternate;
-  }
-  @keyframes glowSpin { 0% { box-shadow: 0 0 25px #ff0055; } 100% { box-shadow: 0 0 38px #00e5ff; } }
-  .logo span { font-family: 'Cinzel Decorative', cursive; font-size: 30px; font-weight: 900; color: #fff; text-shadow: 0 0 15px #fff; }
-  .rgb-head {
-    font-family: 'Cinzel Decorative', cursive; font-size: 27px; font-weight: 900; letter-spacing: 2px;
-    background: linear-gradient(90deg, #ff0055, #ffd700, #00e5ff, #ff0055); background-size: 300% auto;
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    animation: shine 3.5s linear infinite; filter: drop-shadow(0 0 10px rgba(255, 0, 85, 0.7)); margin-bottom: 8px;
-  }
-  @keyframes shine { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
-  .sub-txt { font-size: 14.5px; font-weight: 600; color: #e0f2fe; text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); margin-bottom: 26px; }
-  .inp-box { position: relative; margin-bottom: 16px; }
-  .inp-box input {
-    width: 100%; padding: 15px 44px 15px 18px; background: #08080e;
-    border: 1px solid rgba(0, 229, 255, 0.4); border-radius: 14px; color: #00f0ff;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6); font-family: 'Orbitron', sans-serif;
-    font-size: 13.5px; font-weight: 700; outline: none;
-  }
-  .inp-box input::placeholder { color: #64748b; text-shadow: none; font-family: 'Rajdhani', sans-serif; font-size: 15px; }
-  .inp-box input:focus { border-color: #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5); }
-  .eye { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 16px; }
-  .btn-go {
-    width: 100%; padding: 16px; margin-top: 8px; background: linear-gradient(90deg, #ff0055, #ff5500, #ff0055); background-size: 200% auto;
-    border: none; border-radius: 14px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 14.5px; font-weight: 900;
-    letter-spacing: 1.8px; text-shadow: 0 0 10px #fff; cursor: pointer; box-shadow: 0 0 25px rgba(255, 0, 85, 0.7);
-    animation: shine 2.5s linear infinite;
-  }
-  .err { display: none; margin-top: 15px; padding: 11px; background: rgba(255, 0, 60, 0.15); border: 1px solid #ff003c; border-radius: 12px; color: #ff4d79; font-weight: 700; }
-  .foot { display: flex; justify-content: center; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 12px; font-weight: 700; }
-  .p-glow { color: #ff4d94; text-shadow: 0 0 8px #ff4d94; }
-  .g-glow { color: #ffd700; text-shadow: 0 0 8px #ffd700; }
-  #dl-card { display: none; }
-  .ok-ring {
-    width: 80px; height: 80px; margin: 0 auto 18px; border-radius: 50%; background: rgba(0, 255, 136, 0.12);
-    border: 2px solid #00ff88; display: flex; justify-content: center; align-items: center;
-    font-size: 36px; color: #00ff88; text-shadow: 0 0 15px #00ff88; box-shadow: 0 0 35px rgba(0, 255, 136, 0.5);
-  }
-  .pkg { background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.45); border-radius: 16px; padding: 16px; margin: 20px 0 24px; text-align: left; }
-  .pkg small { font-family: 'Orbitron', sans-serif; font-size: 10px; color: #ffd700; text-shadow: 0 0 8px #ffd700; letter-spacing: 1.2px; }
-  .pkg h3 { font-size: 15px; color: #00f0ff; text-shadow: 0 0 10px #00f0ff; margin-top: 6px; word-break: break-word; }
-  .dl-btn {
-    display: block; width: 100%; padding: 17px; background: linear-gradient(90deg, #00ff88, #00b8ff); border-radius: 14px;
-    color: #040406; text-decoration: none; font-family: 'Orbitron', sans-serif; font-size: 14.5px; font-weight: 900;
-    letter-spacing: 1.2px; box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
-  }
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Rajdhani',sans-serif}
+body{background:#030305 radial-gradient(circle,#1a0011,#030305);color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:15px}
+#intro{position:fixed;inset:0;background:#030305;z-index:99;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.sbtn{padding:18px 32px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;border:none;border-radius:50px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;letter-spacing:2px;box-shadow:0 0 30px #f05;animation:rgb 3s linear infinite}
+@keyframes rgb{100%{background-position:300%}}
+#abox{display:none;flex-direction:column;align-items:center}
+.ring{width:95px;height:95px;border-radius:50%;border:3px solid #f05;border-top-color:#0ef;display:flex;justify-content:center;align-items:center;box-shadow:0 0 35px #f05;animation:sp 1s linear infinite;margin-bottom:20px}
+@keyframes sp{100%{transform:rotate(360deg)}}
+.core{font-family:'Cinzel Decorative',cursive;font-size:30px;font-weight:900;animation:csp 1s linear infinite}
+@keyframes csp{100%{transform:rotate(-360deg)}}
+.atitle{font-family:'Cinzel Decorative',cursive;font-size:28px;background:linear-gradient(90deg,#f05,#fd0,#0ef);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px #f05)}
+.avip{font-family:'Orbitron',sans-serif;color:#fd0;letter-spacing:5px;text-shadow:0 0 15px #fd0;margin:8px 0 22px}
+.bar{width:220px;height:6px;background:#222;border-radius:10px;overflow:hidden}
+.fill{width:0%;height:100%;background:linear-gradient(90deg,#f05,#fd0,#0f8);transition:width 2.3s}
+.box{width:100%;max-width:390px;display:none}
+.card{background:rgba(15,15,24,.95);border:1.5px solid #f05;box-shadow:0 0 35px rgba(255,0,85,.35);border-radius:24px;padding:32px 24px;text-align:center}
+.logo{width:76px;height:76px;margin:0 auto 15px;border-radius:50%;background:linear-gradient(135deg,#f05,#f90);display:flex;justify-content:center;align-items:center;font-family:'Cinzel Decorative',cursive;font-size:28px;box-shadow:0 0 25px #f05}
+h1{font-family:'Cinzel Decorative',cursive;font-size:25px;background:linear-gradient(90deg,#f05,#fd0,#0ef,#f05);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:rgb 3s linear infinite;margin-bottom:6px}
+p{color:#bae6fd;text-shadow:0 0 8px #0ef;font-size:14px;margin-bottom:22px}
+input{width:100%;padding:14px;margin-bottom:14px;background:#08080e;border:1px solid #0ef;border-radius:12px;color:#0ff;font-family:'Orbitron',sans-serif;font-size:13px;outline:none}
+.btn{width:100%;padding:15px;background:linear-gradient(90deg,#f05,#f50);border:none;border-radius:12px;color:#fff;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1.5px;box-shadow:0 0 20px #f05}
+.err{display:none;color:#ff4d79;margin-top:12px}
+#dl{display:none}
+.pkg{background:rgba(0,229,255,.1);border:1px solid #0ef;border-radius:14px;padding:14px;margin:18px 0;text-align:left}
+.pkg h3{color:#0ff;font-size:14px;margin-top:4px}
+.dlb{width:100%;padding:16px;background:linear-gradient(90deg,#0f8,#0bf);border:none;border-radius:12px;color:#000;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:1px;box-shadow:0 0 25px #0f8}
 </style>
 </head>
 <body>
-<div class="main-box">
-  <div class="top-bar">
-    <div class="online-txt"><div class="dot"></div><span>VIP SERVER ONLINE</span></div>
-    <span class="pro-txt">PRO EDITION</span>
+<div id="intro">
+  <button class="sbtn" id="tbtn" onclick="go()">⚡ ENTER VIP PORTAL ⚡</button>
+  <div id="abox">
+    <div class="ring"><div class="core">SD</div></div>
+    <div class="atitle">SD OPTIMIZE</div>
+    <div class="avip">👑 VIP EDITION 👑</div>
+    <div class="bar"><div class="fill" id="fl"></div></div>
   </div>
-  <div class="card" id="login-card">
-    <div class="badge">👑 EXCLUSIVE VIP ACCESS</div>
-    <div class="logo"><span>SD</span></div>
-    <h1 class="rgb-head">SD OPTIMIZE</h1>
-    <p class="sub-txt">Enter your VIP credentials to unlock pro configurations</p>
-    <div class="inp-box"><input type="text" id="u-inp" placeholder="Enter VIP Username" autocomplete="off"></div>
-    <div class="inp-box"><input type="password" id="p-inp" placeholder="Enter VIP Password"><span class="eye" onclick="showP()">👁️</span></div>
-    <button class="btn-go" id="go-btn" onclick="checkV()">UNLOCK VIP VAULT</button>
-    <div class="err" id="err-box">⚠️ Invalid Username or Password!</div>
-    <div class="foot"><span class="p-glow">⚡ ULTRA HEADSHOT</span><span>•</span><span class="g-glow">🛡️ 100% SAFE</span></div>
+</div>
+<div class="box" id="pbox">
+  <div class="card" id="lc">
+    <div class="logo">SD</div>
+    <h1>SD OPTIMIZE</h1>
+    <p>Enter VIP credentials to unlock</p>
+    <input type="text" id="u" placeholder="VIP Username">
+    <input type="password" id="p" placeholder="VIP Password">
+    <button class="btn" onclick="chk()">UNLOCK VIP VAULT</button>
+    <div class="err" id="er">⚠️ Invalid Username or Password!</div>
   </div>
-  <div class="card" id="dl-card">
-    <div class="badge" style="color:#00ff88; border-color:#00ff88; text-shadow:0 0 10px #00ff88;">✓ ACCESS VERIFIED</div>
-    <div class="ok-ring">✓</div>
-    <h1 class="rgb-head">UNLOCKED</h1>
-    <p class="sub-txt">Your VIP package is ready for instant download</p>
-    <div class="pkg"><small>📦 AUTHORIZED VIP PACKAGE</small><h3>SD x sensi Android Pro Optimize (Specialv2).zip</h3></div>
-    <a href="https://mediafire.com" class="dl-btn" target="_blank" rel="noopener noreferrer">⬇️ DOWNLOAD VIP FILE</a>
-    <div class="foot"><span class="g-glow">© 2026 SD OPTIMIZE</span><span>•</span><span class="p-glow">OFFICIAL PORTAL</span></div>
+  <div class="card" id="dl">
+    <div class="logo" style="background:#0f8;color:#000">✓</div>
+    <h1>UNLOCKED</h1>
+    <p>VIP package ready for download</p>
+    <div class="pkg"><small style="color:#fd0">📦 AUTHORIZED PACKAGE</small><h3>SD x sensi Android Pro Optimize (Specialv2).zip</h3></div>
+    <button class="dlb" onclick="getF()">⬇️ DOWNLOAD VIP FILE</button>
   </div>
 </div>
 <script>
-  function showP() {
-    var x = document.getElementById("p-inp");
-    x.type = x.type === "password" ? "text" : "password";
-  }
-  function checkV() {
-    var u = document.getElementById("u-inp").value.trim();
-    var p = document.getElementById("p-inp").value.trim();
-    if (u === "SDOPTIMIZE" && p === "SDVIP2026") {
-      document.getElementById("err-box").style.display = "none";
-      document.getElementById("go-btn").innerText = "UNLOCKING...";
-      setTimeout(function() {
-        document.getElementById("login-card").style.display = "none";
-        document.getElementById("dl-card").style.display = "block";
-      }, 600);
-    } else {
-      document.getElementById("err-box").style.display = "block";
-    }
-  }
+function snd(){try{var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.type="sawtooth";o.frequency.setValueAtTime(70,c.currentTime);o.frequency.exponentialRampToValueAtTime(320,c.currentTime+1.5);g.gain.setValueAtTime(.25,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+2.2);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+2.3)}catch(e){}}
+function go(){snd();document.getElementById("tbtn").style.display="none";document.getElementById("abox").style.display="flex";setTimeout(()=>{document.getElementById("fl").style.width="100%"},50);setTimeout(()=>{document.getElementById("intro").style.display="none";document.getElementById("pbox").style.display="block"},2500)}
+function chk(){if(document.getElementById("u").value.trim()==="SDOPTIMIZE"&&document.getElementById("p").value.trim()==="SDVIP2026"){document.getElementById("lc").style.display="none";document.getElementById("dl").style.display="block"}else{document.getElementById("er").style.display="block"}}
+function getF(){var a="https://www.mediafire"+".com/file/",b="k4wfsi1f22b689b/SD+x+sensi+Android+Pro+Optimize+(Specialv2).zip/file";window.location.href=a+b}
 </script>
 </body>
 </html>
